@@ -1,0 +1,25 @@
+{
+  "name": "whitepanda-sde-task",
+  "version": "1.0.0",
+  "description": "code for task given by White Panda",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshaKy/whitePanda-sde-task.git"
+  },
+  "author": "harsha ky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarshaKy/whitePanda-sde-task/issues"
+  },
+  "homepage": "https://github.com/HarshaKy/whitePanda-sde-task#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.12"
+  }
+}
