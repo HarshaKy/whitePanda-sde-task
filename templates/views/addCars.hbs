@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task / {{title}}</title>
+</head>
+<body>
+    {{>header}}
+    Add new cars here
+
+    <form action="/cars" method="POST">
+        <input type="text" name="regNo" placeholder="regno">
+        <input type="text" name="make" placeholder="make">
+        <input type="text" name="model" placeholder="model">
+        <input type="text" name="seatingCapacity" placeholder="seating">
+        <input type="text" name="rentPerDay" placeholder="rent">
+        <button>Submit</button>
+    </form>
+
+    <div class="addedCarInfo">
+        {{text}}
+        {{car}}
+    </div>
+
+</body>
+</html>
