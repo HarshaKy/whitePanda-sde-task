@@ -19,6 +19,7 @@ app.set('views', viewsPath)
 
 hbs.registerPartials(partialsPath)
 
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(publicDirPath))
 
@@ -43,8 +44,10 @@ app.get('/cars', (req, res) => {
 })
 
 app.post('/cars', (req, res) => {
-    let body = _.pick(req.body, ['regNo', 'make', 'model', 'seatingCapacity', 'rentPerDay'])
+    let body = _.pick(req.body, ['regNo', 'make', 'model', 'seatingCapacity', 'rentPerDay', 'bookings'])
     let car = new Car(body)
+
+    console.log(body)
 
     car.save().then((doc) => {
         res.render('addCars', {
@@ -54,6 +57,15 @@ app.post('/cars', (req, res) => {
         })
     }, (e) => {
         res.status(400).send(e)
+    })
+})
+
+app.patch('/cars', (req, res) => {
+    let body = req.body.bookings
+    let regNo = req.body.regNo
+    console.log(body)
+    Car.findOneAndUpdate({"regNo": regNo}, {$push: { bookings: body }}, {$new: true}).then((car) => {
+        res.send(car)
     })
 })
 

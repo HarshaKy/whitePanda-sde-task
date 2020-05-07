@@ -10,17 +10,17 @@
     Add new cars here
 
     <form action="/cars" method="POST">
-        <input type="text" name="regNo" placeholder="regno">
-        <input type="text" name="make" placeholder="make">
-        <input type="text" name="model" placeholder="model">
-        <input type="text" name="seatingCapacity" placeholder="seating">
-        <input type="text" name="rentPerDay" placeholder="rent">
+        <input type="text" name="regNo" placeholder="regno" required>
+        <input type="text" name="make" placeholder="make" required>
+        <input type="text" name="model" placeholder="model" required>
+        <input type="number" name="seatingCapacity" placeholder="seating" required>
+        <input type="number" name="rentPerDay" placeholder="rent"  required>
         <button>Submit</button>
     </form>
 
     <div class="addedCarInfo">
-        {{text}}
-        {{car}}
+        {{text}} <br>
+        <h3>{{car}}</h3>
     </div>
 
 </body>
