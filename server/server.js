@@ -37,9 +37,29 @@ app.get('/addCars', (req, res) => {
 
 app.get('/cars', (req, res) => {
     Car.find().then((cars) => {
-        res.send(cars)
+        if (cars.length === 0) {
+            res.send('No cars registered')
+        } else {
+            res.send(cars)
+        }
     }, (e) => {
         res.status(400).send(e)
+    })
+})
+
+app.get('/bookNewCar', (req, res) => {
+    Car.find().then((cars) => {
+        if (cars.length === 0) {
+            res.render('bookCar', {
+                title: "Book Car",
+                text: "No cars registered. Register new cars to book"
+            })
+        } else {
+            res.render('bookCar', {
+                title: "Book Car",
+                text: cars
+            })
+        }
     })
 })
 
@@ -60,12 +80,17 @@ app.post('/cars', (req, res) => {
     })
 })
 
-app.patch('/cars', (req, res) => {
-    let body = req.body.bookings
+app.post('/bookCar', (req, res) => {
+    let body = _.pick(req.body, ['customerName', 'customerPhNo', 'issueDate', 'returnDate'])
     let regNo = req.body.regNo
+
     console.log(body)
-    Car.findOneAndUpdate({"regNo": regNo}, {$push: { bookings: body }}, {$new: true}).then((car) => {
-        res.send(car)
+
+    Car.findOneAndUpdate({"regNo": regNo}, {$push: { bookings: body }}, {new: true}).then((car) => {
+        res.render('bookCar', {
+            title: "Book Car",
+            text: "Car Booked Successfully"
+        })
     })
 })
 

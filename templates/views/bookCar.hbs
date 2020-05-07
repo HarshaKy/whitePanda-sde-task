@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task / {{title}}</title>
+</head>
+<body>
+    {{>header}}
+    Book cars here
+
+    <form action="/bookCar" method="POST">
+        <input type="text" name="regNo" placeholder="regno" required>
+        <input type="text" name="customerName" placeholder="your name" required>
+        <input type="text" name="customerPhNo" placeholder="phone number" required>
+        <input type="date" name="issueDate" placeholder="issue date" required>
+        <input type="date" name="returnDate" placeholder="return date"  required>
+        <button>Submit</button>
+    </form>
+
+    <div class="addedCarInfo">
+        {{text}} <br>
+        {{!-- <h3>{{car}}</h3> --}}
+    </div>
+
+</body>
+</html>
