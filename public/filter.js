@@ -15,7 +15,7 @@ filterForm.addEventListener('submit', (event) => {
         maxRent: maxRent.value
     }
 
-    cars.textContent = JSON.stringify(body)
+    cars.textContent = 'Loading ...'
 
     fetch(`/filteredResults?make=${make.value}`).then((response) => {
         response.json().then((data) => {

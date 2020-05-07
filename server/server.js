@@ -58,7 +58,16 @@ app.get('/cars', (req, res) => {
 app.get('/filteredResults', (req, res) => {
     let make = req.query.make
     console.log(make)
-    res.send({make})
+
+    Car.find({ make: {'$regex': `^${make}$`, $options:'i'} }).then((cars) => {
+        if (cars.length === 0) {
+            res.send( {err: 'No cars found'} )
+        } else {
+            res.send(cars)
+        }
+    }, (e) => {
+        res.status(400).send(e)
+    })
 })
 
 app.post('/cars', (req, res) => {
