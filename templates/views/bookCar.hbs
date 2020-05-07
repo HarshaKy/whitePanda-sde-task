@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task / {{title}}</title>
+    
 </head>
 <body>
     {{>header}}
     Book cars here
+
+    <div class="filters">
+        <form id="filterForm" action="">
+            <input type="text" name="make" id="make" placeholder="make"> 
+            <input type="text" name="model" id="model" placeholder="model">
+            <input type="text" name="seatingCapacity" id="seatingCapacity" placeholder="seatingCapacity">
+            <input type="number" name="rentPerDay" id="maxRent" placeholder="max rent">
+            <button>filter / search</button>
+        </form>
+    </div>
+
+    <div class="carsList">
+        <p id="cars"></p>
+    </div>
 
     <form action="/bookCar" method="POST">
         <input type="text" name="regNo" placeholder="regno" required>
@@ -18,10 +33,6 @@
         <button>Submit</button>
     </form>
 
-    <div class="addedCarInfo">
-        {{text}} <br>
-        {{!-- <h3>{{car}}</h3> --}}
-    </div>
-
 </body>
+<script src="/filter.js"></script>
 </html>

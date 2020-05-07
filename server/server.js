@@ -35,6 +35,14 @@ app.get('/addCars', (req, res) => {
     })
 })
 
+app.get('/bookNewCar', (req, res) => {
+    let text
+    
+    res.render('bookCar', {
+        title: 'Book Car'
+    })
+})
+
 app.get('/cars', (req, res) => {
     Car.find().then((cars) => {
         if (cars.length === 0) {
@@ -47,20 +55,10 @@ app.get('/cars', (req, res) => {
     })
 })
 
-app.get('/bookNewCar', (req, res) => {
-    Car.find().then((cars) => {
-        if (cars.length === 0) {
-            res.render('bookCar', {
-                title: "Book Car",
-                text: "No cars registered. Register new cars to book"
-            })
-        } else {
-            res.render('bookCar', {
-                title: "Book Car",
-                text: cars
-            })
-        }
-    })
+app.get('/filteredResults', (req, res) => {
+    let make = req.query.make
+    console.log(make)
+    res.send({make})
 })
 
 app.post('/cars', (req, res) => {
@@ -70,11 +68,7 @@ app.post('/cars', (req, res) => {
     console.log(body)
 
     car.save().then((doc) => {
-        res.render('addCars', {
-            title: "Add Cars",
-            text: "Added Car",
-            car: doc
-        })
+        res.send(doc)
     }, (e) => {
         res.status(400).send(e)
     })
@@ -87,10 +81,13 @@ app.post('/bookCar', (req, res) => {
     console.log(body)
 
     Car.findOneAndUpdate({"regNo": regNo}, {$push: { bookings: body }}, {new: true}).then((car) => {
-        res.render('bookCar', {
-            title: "Book Car",
-            text: "Car Booked Successfully"
-        })
+        if (car) {
+            res.send(car)
+        } else {
+            res.send(`no car with number ${regNo}`)
+        }
+    }, (e) => {
+        res.send(e)
     })
 })
 
