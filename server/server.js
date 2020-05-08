@@ -56,10 +56,31 @@ app.get('/cars', (req, res) => {
 })
 
 app.get('/filteredResults', (req, res) => {
-    let make = req.query.make
-    console.log(make)
+    let body = _.pick(req.query, ['make', 'model', 'seatingCapacity', 'rentPerDay', 'issueDateFilter', 'returnDateFilter'])
 
-    Car.find({ make: {'$regex': `^${make}$`, $options:'i'} }).then((cars) => {
+
+    let query = {
+
+    }
+
+    if(body.make){
+        query['make'] = {'$regex': body.make, $options:'i'}
+    }
+    if (body.model) {
+        query['model'] = {'$regex': body.model, $options:'i'}
+    }
+    if (body.seatingCapacity) {
+        query['seatingCapacity'] = {$gte: body.seatingCapacity}
+    }
+    if (body.rentPerDay) {
+        query['rentPerDay'] = {$lte: body.rentPerDay}
+    }
+
+    Car.find({ 
+        $and:[
+                query
+            ] 
+    }).then((cars) => {
         if (cars.length === 0) {
             res.send( {err: 'No cars found'} )
         } else {

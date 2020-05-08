@@ -1,4 +1,3 @@
-
 const filterForm = document.querySelector('#filterForm')
 const cars = document.querySelector('#cars')
 const make = document.querySelector('#make')
@@ -12,28 +11,16 @@ function bookCar (carRegNo) {
     bookFormDiv.style.display = 'block'
 }
 
-window.onload = function () {
-    fetch('/cars').then((response) => {
-        response.json().then((data) => {
-            let car
-
-            if (data.err) {
-                cars.innerHTML = data.err
-            } else {
-                for(car of data) {
-                    cars.innerHTML += `<p>Car name: ${car.make} ${car.model}, Seating: ${car.seatingCapacity}, Rent per day: ${car.rentPerDay}<button onclick='bookCar(${JSON.stringify(car.regNo)})'>Book</button></p>`
-                }
-            }
-        })
-    })
-}
-
 filterForm.addEventListener('submit', (event) => {
     event.preventDefault()
+
     bookFormDiv.style.display = 'none'
     cars.textContent = 'Loading ...'
 
-    fetch(`/filteredResults?make=${make.value}`).then((response) => {
+    let URL = `/filteredResults?make=${make.value}&model=${model.value}&seatingCapacity=${seatingCapacity.value}&rentPerDay=${maxRent.value}`
+
+
+    fetch(URL).then((response) => {
         response.json().then((data) => {
 
             cars.innerHTML = ''
@@ -48,11 +35,4 @@ filterForm.addEventListener('submit', (event) => {
             }            
         })
     })
-
-    // fetch('/cars').then((response) => {
-    //     response.json().then((data) => {
-    //         cars.textContent = JSON.stringify(data)
-    //     })
-    // })
-    // http://localhost:3000/bookNewCar?make=&model=&seatingCapacity=&rentPerDay=
 })
