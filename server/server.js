@@ -46,7 +46,7 @@ app.get('/bookNewCar', (req, res) => {
 app.get('/cars', (req, res) => {
     Car.find().then((cars) => {
         if (cars.length === 0) {
-            res.send('No cars registered')
+            res.send( {err: 'No cars registered'} )
         } else {
             res.send(cars)
         }
