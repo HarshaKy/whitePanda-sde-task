@@ -5,9 +5,13 @@ const model = document.querySelector('#model')
 const seatingCapacity = document.querySelector('#seatingCapacity')
 const maxRent = document.querySelector('#maxRent')
 const bookFormDiv = document.querySelector('#bookingForm')
+const regNo = document.querySelector('#regNo')
 
-function bookCar (carRegNo) {
-    console.log(carRegNo)
+function bookCar (carRegNo, carModel) {
+    console.log(carModel)
+
+    regNo.value = carRegNo
+
     bookFormDiv.style.display = 'block'
 }
 
@@ -30,7 +34,7 @@ filterForm.addEventListener('submit', (event) => {
                 cars.innerHTML = data.err
             } else {
                 for(car of data) {
-                    cars.innerHTML += `<p>Car name: ${car.make} ${car.model}, Seating: ${car.seatingCapacity}, Rent per day: ${car.rentPerDay}<button onclick='bookCar(${JSON.stringify(car.regNo)})'>Book</button></p>`
+                    cars.innerHTML += `<p>Car name: ${car.make} ${car.model}, Seating: ${car.seatingCapacity}, Rent per day: ${car.rentPerDay}<button onclick='bookCar(${JSON.stringify(car.regNo)}, ${JSON.stringify(car.model)})'>Book</button></p>`
                 }
             }            
         })

@@ -26,9 +26,9 @@
 
    <div style="display: none;" id="bookingForm">
         <form id="bookingForm" action="/bookCar" method="POST">
-            <input type="text" name="regNo" placeholder="regno" required>
+            <input type="text" id="regNo" name="regNo" placeholder="regno" required readonly>
             <input type="text" name="customerName" placeholder="your name" required>
-            <input type="text" name="customerPhNo" placeholder="phone number" required>
+            <input type="text" name="customerPhNo" placeholder="phone number" minlength="10" maxlength="10" required>
             <input type="date" name="issueDate" placeholder="issue date" required>
             <input type="date" name="returnDate" placeholder="return date"  required>
             <button>Submit</button>

@@ -108,6 +108,7 @@ app.post('/bookCar', (req, res) => {
     let body = _.pick(req.body, ['customerName', 'customerPhNo', 'issueDate', 'returnDate'])
     let regNo = req.body.regNo
 
+    console.log(regNo)
     console.log(body)
 
     Car.findOneAndUpdate({"regNo": regNo}, {$push: { bookings: body }}, {new: true}).then((car) => {

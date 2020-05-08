@@ -7,7 +7,7 @@ window.onload = function () {
                 cars.innerHTML = data.err
             } else {
                 for(car of data) {
-                    cars.innerHTML += `<p>Car name: ${car.make} ${car.model}, Seating: ${car.seatingCapacity}, Rent per day: ${car.rentPerDay}<button onclick='bookCar(${JSON.stringify(car.regNo)})'>Book</button></p>`
+                    cars.innerHTML += `<p>Car name: ${car.make} ${car.model}, Seating: ${car.seatingCapacity}, Rent per day: ${car.rentPerDay}<button onclick='bookCar(${JSON.stringify(car.regNo)}, ${JSON.stringify(car.model)})'>Book</button></p>`
                 }
             }
         })
