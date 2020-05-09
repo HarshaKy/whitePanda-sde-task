@@ -12,8 +12,8 @@
 
     <div class="search">
         <form id="searchCar" action="">
-            <input type="text" name="make" id="make" placeholder="make"> 
-            <input type="text" name="model" id="model" placeholder="model">
+            Make: <input type="text" name="make" id="make" placeholder="make"> 
+            Model: <input type="text" name="model" id="model" placeholder="model">
             <button>filter / search</button>
         </form>
     </div>
@@ -25,11 +25,11 @@
    <div style="display: none;" id="updateFormDiv">
         <form id="updateForm" action="/update" method="POST">
         <p>Set New Values:</p>
-            <input type="text" id="regNo" name="regNo" placeholder="regno" readonly>
-            <input type="text" name="make" placeholder="make" >
-            <input type="text" name="model" placeholder="model" minlength="10" maxlength="10" >
-            <input type="number" name="seatingCapacity" placeholder="seating capacity" >
-            <input type="number" name="rentPerDay" placeholder="rent per day"  >
+            <p>Registration Number: <input type="text" id="regNo" name="regNo" placeholder="regno" readonly></p>
+            <p>Make: <input type="text" name="make" placeholder="make" ></p>
+            <p>Model: <input type="text" name="model" placeholder="model" minlength="10" maxlength="10" ></p>
+            <p>Seating Capacity: <input type="number" name="seatingCapacity" placeholder="seating capacity" ></p>
+            <p>Rent Per Day: <input type="number" name="rentPerDay" placeholder="rent per day"  ></p>
             <button>Update</button>
         </form>
    </div>

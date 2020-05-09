@@ -12,10 +12,10 @@
 
     <div class="filters">
         <form id="filterForm" action="">
-            <input type="text" name="make" id="make" placeholder="make"> 
-            <input type="text" name="model" id="model" placeholder="model">
-            <input type="text" name="seatingCapacity" id="seatingCapacity" placeholder="seatingCapacity">
-            <input type="number" name="rentPerDay" id="maxRent" placeholder="max rent">
+            Make: <input type="text" name="make" id="make" placeholder="make"> 
+            Model: <input type="text" name="model" id="model" placeholder="model">
+            Seating Capacity: <input type="text" name="seatingCapacity" id="seatingCapacity" placeholder="seatingCapacity">
+            Rent Per Day limit: <input type="number" name="rentPerDay" id="maxRent" placeholder="max rent">
             <button>filter / search</button>
         </form>
     </div>
@@ -28,10 +28,10 @@
         <form id="bookingForm" action="/bookCar" method="POST">
         <p>Book Car</p>
             <input type="text" id="regNo" name="regNo" placeholder="regno" required readonly>
-            <input type="text" name="customerName" placeholder="your name" required>
-            <input type="text" name="customerPhNo" placeholder="phone number" minlength="10" maxlength="10" required>
-            <input type="date" name="issueDate" placeholder="issue date" required>
-            <input type="date" name="returnDate" placeholder="return date"  required>
+            <p>Your name: <input type="text" name="customerName" placeholder="your name" required></p>
+            <p>Your Phone Number: <input type="text" name="customerPhNo" placeholder="phone number" minlength="10" maxlength="10" required></p>
+            <p>Trip Start Date: <input type="date" name="issueDate" placeholder="issue date" required></p>
+            <p>Trip End Date: <input type="date" name="returnDate" placeholder="return date"  required></p>
             <button>Submit</button>
         </form>
    </div>
