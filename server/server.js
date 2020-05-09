@@ -108,6 +108,26 @@ app.get('/filteredResults', (req, res) => {
     })
 })
 
+// route to render page that is used to deltete car
+app.get('/deleteCar', (req, res) => {
+    res.render('deleteCar', {
+        title: 'Delete Car'
+    })
+})
+
+// route to get back results after deleting car
+app.get('/delete', (req, res) => {
+    let regNo = req.query.regNo
+
+    console.log(regNo)
+
+    Car.deleteOne({ regNo: regNo }).then((car) => {
+        res.send(car)
+    }, (e) => {
+        res.send({ err: 'No car to delete' }).status(400)
+    })
+})
+
 // post request to add new cars
 app.post('/cars', (req, res) => {
     let body = _.pick(req.body, ['regNo', 'make', 'model', 'seatingCapacity', 'rentPerDay', 'bookings'])
