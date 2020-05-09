@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "500045a0-01ae-4dfe-a036-5d000566ce79",
+		"name": "whitePanda-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all cars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/cars",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cars"
+					]
+				},
+				"description": "get all cars"
+			},
+			"response": []
+		},
+		{
+			"name": "get filtered results",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/filteredResults?make=lambo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"filteredResults"
+					],
+					"query": [
+						{
+							"key": "make",
+							"value": "lambo"
+						}
+					]
+				},
+				"description": "get filtered results"
+			},
+			"response": []
+		},
+		{
+			"name": "delete a car",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/delete?regNo=test",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "regNo",
+							"value": "test"
+						}
+					]
+				},
+				"description": "delete car"
+			},
+			"response": []
+		},
+		{
+			"name": "add new car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"regNo\": \"from postman\",\n\t\"make\": \"test\",\n\t\"model\": \"asdf\",\n\t\"seatingCapacity\": 3,\n\t\"rentPerDay\": 123\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/cars",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cars"
+					]
+				},
+				"description": "add car"
+			},
+			"response": []
+		},
+		{
+			"name": "book a car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"regNo\": \"from postman\",\n\t\"customerName\": \"harshaaaaa\",\n\t\"customerPhNo\": \"1111111111\",\n\t\"issueDate\": \"2020-05-09\",\n\t\"returnDate\": \"2020-06-09\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/bookCar",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bookCar"
+					]
+				},
+				"description": "book car"
+			},
+			"response": []
+		},
+		{
+			"name": "update a car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"regNo\": \"from postman\",\n\t\"make\": \"updated\",\n\t\"model\": \"info\",\n\t\"seatingCapacity\": 32,\n\t\"rentPerDay\": 123\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"update"
+					]
+				},
+				"description": "update car"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
