@@ -1,3 +1,5 @@
+// render all cars when book cars gets loaded
+
 window.onload = function () {
     fetch('/cars').then((response) => {
         response.json().then((data) => {

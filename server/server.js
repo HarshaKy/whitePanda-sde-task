@@ -1,5 +1,6 @@
-require('./config/config');
+require('./config/config'); //contains the config for mongodb
 
+// import libs
 const express = require('express')
 const bodyParser = require('body-parser')
 const _ = require('lodash')
@@ -9,6 +10,7 @@ const hbs = require('hbs')
 let {mongoose} = require('./db/mongoose')
 let {Car} = require('./models/cars')
 
+// set paths for folders that you want to serve up
 const publicDirPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
@@ -16,27 +18,32 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 let app = express()
 const port = process.env.PORT || 3000;
 
+// initialize the hbs view engine
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 
 hbs.registerPartials(partialsPath)
 
+// telling the app to recognize both raw json input and input from html
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(publicDirPath))
 
+// index 
 app.get('', (req, res) => {
     res.render('index', {
         title: "Index"
     })
 })
 
+// route for adding new cars
 app.get('/addCars', (req, res) => {
     res.render('addCars', {
         title: "Add Cars",
     })
 })
 
+// route for booking new cars
 app.get('/bookNewCar', (req, res) => {
     let text
     
@@ -45,6 +52,7 @@ app.get('/bookNewCar', (req, res) => {
     })
 })
 
+// get request to fetch all cars
 app.get('/cars', (req, res) => {
     Car.find().then((cars) => {
         if (cars.length === 0) {
@@ -57,6 +65,7 @@ app.get('/cars', (req, res) => {
     })
 })
 
+// get request to fetch filtered results
 app.get('/filteredResults', (req, res) => {
     let body = _.pick(req.query, ['make', 'model', 'seatingCapacity', 'rentPerDay', 'issueDateFilter', 'returnDateFilter'])
 
@@ -93,6 +102,7 @@ app.get('/filteredResults', (req, res) => {
     })
 })
 
+// post request to add new cars
 app.post('/cars', (req, res) => {
     let body = _.pick(req.body, ['regNo', 'make', 'model', 'seatingCapacity', 'rentPerDay', 'bookings'])
     let car = new Car(body)
@@ -106,6 +116,7 @@ app.post('/cars', (req, res) => {
     })
 })
 
+// post request that gets called when you book a car
 app.post('/bookCar', (req, res) => {
     let body = _.pick(req.body, ['customerName', 'customerPhNo', 'issueDate', 'returnDate'])
     let regNo = req.body.regNo
@@ -124,6 +135,7 @@ app.post('/bookCar', (req, res) => {
     })
 })
 
+// telling the app to listen on a port
 app.listen(port, () => {
     console.log('Listening on port ' + port);
 })
