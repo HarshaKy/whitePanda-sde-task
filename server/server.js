@@ -65,6 +65,12 @@ app.get('/cars', (req, res) => {
     })
 })
 
+app.get('/viewCars', (req, res) => {
+    res.render('viewCars', {
+        title: 'View Cars'
+    })
+})
+
 // get request to fetch filtered results
 app.get('/filteredResults', (req, res) => {
     let body = _.pick(req.query, ['make', 'model', 'seatingCapacity', 'rentPerDay', 'issueDateFilter', 'returnDateFilter'])

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task / {{title}}</title>
+</head>
+<body>
+    {{>header}}
+    All the cars 
+
+    <div class="allCars" id="allCars">
+        
+    </div>
+</body>
+<script>
+    const cars = document.querySelector('#allCars')
+
+    window.onload = function () {
+        fetch('/cars').then((response) => {
+            response.json().then((data) => {
+                let car
+                let i = 1
+
+                if (data.err) {
+                    cars.innerHTML = data.err
+                } else {
+                    for(car of data) {
+                        cars.innerHTML += `<p>${i}. Car name: ${car.make} ${car.model}, Seating: ${car.seatingCapacity}, Rent per day: ${car.rentPerDay}</p><p>Bookings: ${JSON.stringify(car.bookings)}</p>`
+                        i++
+                    }
+                }
+            })
+        })
+    }
+</script>
+</html>
