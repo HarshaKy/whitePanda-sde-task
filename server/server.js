@@ -128,6 +128,13 @@ app.get('/delete', (req, res) => {
     })
 })
 
+// route to render page that is used to update cars
+app.get('/updateCar', (req, res) => {
+    res.render('updateCar', {
+        title: 'Update Car'
+    })
+})
+
 // post request to add new cars
 app.post('/cars', (req, res) => {
     let body = _.pick(req.body, ['regNo', 'make', 'model', 'seatingCapacity', 'rentPerDay', 'bookings'])
@@ -159,6 +166,41 @@ app.post('/bookCar', (req, res) => {
     }, (e) => {
         res.send(e)
     })
+})
+
+// post request that gets called when you update a car
+app.post('/update', (req, res) => {
+    let body = _.pick(req.body, ['regNo', 'make', 'model', 'seatingCapacity', 'rentPerDay'])
+
+    let query = {
+
+    }
+
+    if(body.make){
+        query['make'] = body.make
+    }
+    if (body.model) {
+        query['model'] = body.model
+    }
+    if (body.seatingCapacity) {
+        query['seatingCapacity'] = body.seatingCapacity
+    }
+    if (body.rentPerDay) {
+        query['rentPerDay'] = body.rentPerDay
+    }
+
+    console.log(query)
+
+    Car.findOneAndUpdate({regNo: body.regNo}, {$set: query}, {new: true}).then((car) => {
+        if (car) {
+            res.send(car)
+        } else {
+            res.send(`no car with number ${regNo}`)
+        }
+    }, (e) => {
+        res.send(e)
+    })
+    
 })
 
 // telling the app to listen on a port
